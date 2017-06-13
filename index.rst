@@ -10,7 +10,7 @@ Contact Information
 
     - Gitter (preferred) |ImageLink|_
     - Email (good): Matthew.MacManes@unh.edu
-    - Twitter (good):  `@macmanes <http://twitter.com/macmanes>`_
+    - Twitter (good):  `@MacManes <http://twitter.com/macmanes>`_
     - Phone (discouraged): 603-862-4052
     - Office (I'm hiding under my desk): 189 Rudman Hall
 
@@ -68,7 +68,7 @@ Use RCorrector if you have *more* than 20 million paired-end reads
 
 ::
 
-  perl run_rcorrector.pl -k 31 -t 30 \
+  run_rcorrector.pl -k 31 -t 30 \
   -1 file_1.fastq \
   -2 file_2.fastq
 
@@ -87,36 +87,62 @@ Use bfc if you have *less* than 20 million paired-end reads. If you are using Il
 -----------------------------------
 One should aggressively hunt down adapter seqeunces and get rid of them. In contrast, gently trim low quality nucleotides. Any more will cause a significant decrease on asembly completeness, as per http://journal.frontiersin.org/article/10.3389/fgene.2014.00013/. I typically do both these steps from within Trinity (using Trimmomatic), but one could do trimming as an independent process if desired. 
 
+::
+
+  skewer -l 25 -m pe -o skewer --mean-quality 2 --end-quality 2 -t 30 \
+  -x /home/ubuntu/share/TruSeq3-PE.fa \
+  file_1.cor.fastq file_2.cor.fastq
+
 4. Assemble
 -----------------------------------
-Assemble your reads using Trinity. If you have stranded data, make sure to iclude the ``--SS_lib_type RF`` tag, assuming that is the right orientation (If you're using the standard TruSeq kit, it probably is). Also, you may need to adjust the ``--CPU`` and ``--max_memory`` settings. Change the name of the input reads to match your read names. 
+Assemble your reads using Trinity and BinPacker. If you have stranded data, make sure to iclude the ``--SS_lib_type RF`` tag, assuming that is the right orientation (If you're using the standard TruSeq kit, it probably is). Also, you may need to adjust the ``--CPU`` and ``--max_memory`` settings. Change the name of the input reads to match your read names. 
 
 ::
 
-  Trinity --seqType fq --max_memory 40G --trimmomatic --CPU 30 --full_cleanup --output Rcorr_trinity \
-  --left file_1.cor.fastq \
-  --right file_2.cor.fastq \
-  --quality_trimming_params "ILLUMINACLIP:/home/ubuntu/trinityrnaseq/trinity-plugins/Trimmomatic/adapters/TruSeq3-PE-2.fa:2:40:15 LEADING:2 TRAILING:2 MINLEN:25"
+  Trinity --seqType fq --max_memory 10G --CPU 16 --output Rcorr_trinity --full_cleanup \
+  --left skewer-trimmed-pair1.fastq \
+  --right skewer-trimmed-pair2.fastq
 
-5. Quality Check
+::
+
+  spades.py -o Rcorr_spades --rna \
+  --only-assembler --threads 16 --memory 20 \
+  -1 skewer-trimmed-pair1.fastq \
+  -2 skewer-trimmed-pair2.fastq
+
+
+
+5. TransFuse Merge Assemblies
+----------------------------------
+Each Assembler will reconstruct a slightly different set of _true_ transcript. TransFuse will take them both and merge them together
+
+::
+
+  transfuse -t 16 -i 0.98 -o transfuse.fasta \
+  -l skewer-trimmed-pair1.fastq \
+  -r skewer-trimmed-pair2.fastq \
+  -a Rcorr_spades/transcripts.fasta,Rcorr_trinity.Trinity.fasta
+
+
+6. Quality Check
 -----------------------------------
 If you have followed the ORP AWS setup protocol, you will have the BUSCO Metazoa and Vertebrata datasets. If you need something else, you can download from here: http://busco.ezlab.org/. You should check your assembly using BUSCO. For most transcriptomes, something like 60-90% complete BUSCOs should be accepted. This might be less (even though your transcriptome is complete) if you are assembling a marine invert or some other 'weird' organism. 
 
 ::
 
-  python3 ~/BUSCO_v1.1b1/BUSCO_v1.1b1.py -m trans --cpu 16 -l ~/BUSCO_v1.1b1/vertebrata \
-  -o assemb_name -in Rcorr_trinity.Trinity.fasta 
+  BUSCO.py -m tran --cpu 16 -l ~/busco/eukaryota_odb9 \
+  -o assemb_name -i transfuse.fasta 
 
 You should evaluate your assembly with Transrate, in addition to BUSCO. A Transrate score > .22 is generally thought to be acceptable, though higher scores are usually achievable. There is a ``good*fasta`` assembly in the output directory which you may want to use as the final assembly, for further filtering [e.g., TPM], or for something else. 
 
 ::
 
   transrate -o assemb_name -t 16 \
-  -a Rcorr_trinity.Trinity.fasta \
-  --left file_1.cor.fastq \
-  --right file_2.cor.fastq
+  -a transfuse.fasta \
+  --left skewer-trimmed-pair1.fastq \
+  --right skewer-trimmed-pair2.fastq
 
-6. Filter
+7. Filter
 -----------------------------------
 
 Filtering is the process through which you aim to maximize the Transrate score, which assays structural integrity, while preserving the BUSCO score, which assays genic completeness. At some level this is a trade off. Some people may require a structually accurate assembly and not care so much abot completeness. Others, dare I say most, are interested in completeness - reconstructing everything possible - and care less about structure. 
@@ -130,40 +156,37 @@ Estimate expression with Kallisto
 
 ::
 
-  kallisto index -i kallisto.idx Rcorr_trinity.Trinity.fasta
-  kallisto quant -t 32 -i kallisto.idx -o kallisto_orig file_1.cor.fastq file_2.cor.fastq
+  kallisto index -i kallisto.idx transfuse.fasta
+  kallisto quant -t 32 -i kallisto.idx -o kallisto_orig skewer-trimmed-pair1.fastq skewer-trimmed-pair2.fastq
   
 Estimate expression with Salmon
 
 ::
 
-  ~/salmon-0.5.1/bin/salmon index -t Rcorr_trinity.Trinity.fasta -i salmon.idx --type quasi -k 31
-  ~/salmon-0.5.1/bin/salmon quant -p 32 -i salmon.idx -l IU -1 file_1.cor.fastq -2 file_2.cor.fastq -o salmon_orig
+  salmon index -t transfuse.fasta -i salmon.idx --type quasi -k 31
+  salmon quant -p 32 -i salmon.idx --seqBias --gcBias -l a -1 skewer-trimmed-pair1.fastq -2 skewer-trimmed-pair2.fastq -o salmon_orig
 
 Pull down transcripts whose TPM > 1. 
 
 ::
 
   awk '1>$5{next}1' kallisto_orig/abundance.tsv | awk '{print $1}' > kallist
-  awk '1>$3{next}1' salmon_orig/quant.sf | sed  '1,10d' | awk '{print $1}' > salist
+  awk '1>$4{next}1' salmon_orig/quant.sf | sed  '1,10d' | awk '{print $1}' > salist
   cat kallist salist | sort -u > uniq_list
-  sed -i ':begin;N;/[ACTGNn-]\n[ACTGNn-]/s/\n//;tbegin;P;D' Rcorr_trinity.Trinity.fasta
 
-  for i in $(cat uniq_list); 
-     do grep --no-group-separator --max-count=1 -A1 -w $i Rcorr_trinity.Trinity.fasta >> Rcorr_highexp.trinity.Trinity.fasta; 
-  done
+  python ~/share/filter.py transfuse.fasta uniq_list > Highexp.fasta
 
-7. Annotate  
+8. Annotate  
 -----------------------------------
 I have taken a liking to using dammit! (http://dammit.readthedocs.org/en/latest/). 
 
 ::
 
-  mkdir /mnt/dammit/ && cd /mnt/dammit
-  dammit databases --install --database-dir /mnt/dammit --full --busco-group metazoa
-  dammit annotate assembly.fasta --busco-group metazoa --n_threads 36 --database-dir /mnt/dammit/ --full
+  mkdir ~/dammit/ && cd ~/dammit
+  dammit databases --install --database-dir ~/dammit --full --busco-group metazoa
+  dammit annotate Highexp.fasta --busco-group metazoa --n_threads 36 --database-dir ~/dammit/ --full
 
 
-8. Report
+9. Report
 -----------------------------------
 Verify the quality of your assembly using content based metrics. Report Transrate score, BUSCO statistics, number of unique transcripts, etc. Do not report meaningless statistics such as N50
