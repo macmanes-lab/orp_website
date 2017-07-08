@@ -126,7 +126,7 @@ I assemble using SPAdes with two different kmer values. k=55 and k=75.
 
 Shannon assembly. To avoid running the Shanon error correction software (Quorum), I convert the fq reads to fa using `seqtk`. I wish there were a flag for this, but alas, there is none.
 
-  ::
+::
 
   python shannon.py -p 24 -K 75 \
   -o shannonassemb \
