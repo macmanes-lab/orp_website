@@ -64,7 +64,8 @@ Plot Results using R
 2. Error Correct
 -----------------------------------
 
-Use RCorrector if you have *more* than 20 million paired-end reads
+Use RCorrector if you have *more* than 20 million paired-end reads.
+NOTE: I've basically taken to using RCorrector for everything, given the peculiarities with running BFC.
 
 ::
 
@@ -85,28 +86,41 @@ Use bfc if you have *less* than 20 million paired-end reads. If you are using Il
 
 3. Aggressive adapter & gentle quality trimming.
 -----------------------------------
-One should aggressively hunt down adapter seqeunces and get rid of them. In contrast, gently trim low quality nucleotides. Any more will cause a significant decrease on asembly completeness, as per http://journal.frontiersin.org/article/10.3389/fgene.2014.00013/. I typically do both these steps from within Trinity (using Trimmomatic), but one could do trimming as an independent process if desired.
-
+One should aggressively hunt down adapter sequeunces and get rid of them. In contrast, gently trim low quality nucleotides. Any more will cause a significant decrease on asembly completeness, as per http://journal.frontiersin.org/article/10.3389/fgene.2014.00013/. I typically do both these steps from within Trinity (using Trimmomatic), but one could do trimming as an independent process if desired.
+NOTE: Trimmomatic is a little (or maybe a lot) faster, so in general I use
 ::
 
-  skewer -l 25 -m pe -o skewer --mean-quality 2 --end-quality 2 -t 30 \
-  -x /home/ubuntu/share/TruSeq3-PE.fa \
-  file_1.cor.fastq file_2.cor.fastq
+  trimmomatic PE -threads 24 -baseout /mnt/lustre/macmaneslab/macmanes/rcorr/fiberlobe.TRIM.fastq \
+  reads/SRR1522987_1.fastq \
+  reads/SRR1522987_2.fastq \
+  LEADING:3 TRAILING:3 \
+  ILLUMINACLIP:/mnt/lustre/macmaneslab/macmanes/Oyster_River_Protocol//barcodes/barcodes.fa:2:30:10 MINLEN:25
 
 4. Assemble
 -----------------------------------
-Assemble your reads using Trinity and BinPacker. If you have stranded data, make sure to iclude the ``--SS_lib_type RF`` tag, assuming that is the right orientation (If you're using the standard TruSeq kit, it probably is). Also, you may need to adjust the ``--CPU`` and ``--max_memory`` settings. Change the name of the input reads to match your read names.
+Assemble your reads using as many different assemblers as possible. I typically use Trinity, SPAdes and Shannon. I'd love to use BinPacker, but I can't usually get it to install or work. If you have stranded data, make sure to iclude the ``--SS_lib_type RF`` tag, assuming that is the right orientation (If you're using the standard TruSeq kit, it probably is). Also, you may need to adjust the ``--CPU`` and ``--max_memory`` settings. Change the name of the input reads to match your read names.
 
 ::
 
-  Trinity --seqType fq --max_memory 10G --CPU 16 --output Rcorr_trinity --full_cleanup \
+  Trinity --seqType fq --max_memory 100G --CPU 16 --output Rcorr_trinity --full_cleanup \
   --left skewer-trimmed-pair1.fastq \
-  --right skewer-trimmed-pair2.fastq
+  --right skewer-trimmed-pair2.fastq \
+  --no_normalize_reads
+
+I assemble using SPAdes with two different kmer values. k=55 and k=75.
 
 ::
 
-  spades.py -o Rcorr_spades --rna \
-  --only-assembler --threads 16 --memory 20 \
+  rnaspades.py --only-assembler \
+  -o /mnt/lustre/macmaneslab/macmanes/assemblies/fiberlobe.spades_k75 \
+  --threads 24 --memory 120 -k 75 \
+  -1 skewer-trimmed-pair1.fastq \
+  -2 skewer-trimmed-pair2.fastq
+
+
+  rnaspades.py --only-assembler \
+  -o /mnt/lustre/macmaneslab/macmanes/assemblies/fiberlobe.spades_k75 \
+  --threads 24 --memory 120 -k 55 \
   -1 skewer-trimmed-pair1.fastq \
   -2 skewer-trimmed-pair2.fastq
 
