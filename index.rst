@@ -124,7 +124,7 @@ I assemble using SPAdes with two different kmer values. k=55 and k=75.
   -1 skewer-trimmed-pair1.fastq \
   -2 skewer-trimmed-pair2.fastq
 
-Shannon assembly. To avoid running the Shanon error correction software (Quorum), I convert the fq reads to fa using `seqtk`. I wish there were a flag for this, but alas, there is none. 
+Shannon assembly. To avoid running the Shanon error correction software (Quorum), I convert the fq reads to fa using `seqtk`. I wish there were a flag for this, but alas, there is none.
 
   ::
 
@@ -133,16 +133,19 @@ Shannon assembly. To avoid running the Shanon error correction software (Quorum)
   --left skewer-trimmed-pair1.fa \
   --right skewer-trimmed-pair2.fa
 
-5. TransFuse Merge Assemblies
+5. OrthoFuse Merge Assemblies
 ----------------------------------
-Each Assembler will reconstruct a slightly different set of _true_ transcript. TransFuse will take them both and merge them together
+Each Assembler will reconstruct a slightly different set of _true_ transcript. OrthoFuse will take them both and merge them together. Orthofuse is new software I've recently written, and should be considered in alpha. It works, and we've found that it does as good a job or better than TransFuse (which we find unreliable in it's installation in running).
 
 ::
 
-  transfuse -t 16 -i 0.98 -o transfuse.fasta \
-  -l skewer-trimmed-pair1.fastq \
-  -r skewer-trimmed-pair2.fastq \
-  -a Rcorr_spades/transcripts.fasta,Rcorr_trinity.Trinity.fasta
+  orthofuser.mk  all \
+  FASTADIR=assemblies/ \
+  READ1=skewer-trimmed-pair1.fastq \
+  READ2=skewer-trimmed-pair2.fastq  \
+  RUNOUT=mergedassembly \
+  CPU=24 \
+  LINEAGE=busco_dbs/eukaryota_odb9
 
 
 6. Quality Check
@@ -151,15 +154,16 @@ If you have followed the ORP AWS setup protocol, you will have the BUSCO Metazoa
 
 ::
 
-  BUSCO.py -m tran --cpu 16 -l ~/busco/eukaryota_odb9 \
-  -o assemb_name -i transfuse.fasta
+  python3 run_BUSCO.py \
+  -i mergedassembly.orthomerged.fasta \
+  -m transcriptome --cpu 24 -l eukaryota_odb9 -o orthofused
 
 You should evaluate your assembly with Transrate, in addition to BUSCO. A Transrate score > .22 is generally thought to be acceptable, though higher scores are usually achievable. There is a ``good*fasta`` assembly in the output directory which you may want to use as the final assembly, for further filtering [e.g., TPM], or for something else.
 
 ::
 
   transrate -o assemb_name -t 16 \
-  -a transfuse.fasta \
+  -a mergedassembly.orthomerged.fasta \
   --left skewer-trimmed-pair1.fastq \
   --right skewer-trimmed-pair2.fastq
 
