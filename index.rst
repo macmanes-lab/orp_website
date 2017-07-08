@@ -112,19 +112,26 @@ I assemble using SPAdes with two different kmer values. k=55 and k=75.
 ::
 
   rnaspades.py --only-assembler \
-  -o /mnt/lustre/macmaneslab/macmanes/assemblies/fiberlobe.spades_k75 \
+  -o spades_k75 \
   --threads 24 --memory 120 -k 75 \
   -1 skewer-trimmed-pair1.fastq \
   -2 skewer-trimmed-pair2.fastq
 
 
   rnaspades.py --only-assembler \
-  -o /mnt/lustre/macmaneslab/macmanes/assemblies/fiberlobe.spades_k75 \
+  -o spades_k55 \
   --threads 24 --memory 120 -k 55 \
   -1 skewer-trimmed-pair1.fastq \
   -2 skewer-trimmed-pair2.fastq
 
+Shannon assembly. To avoid running the Shanon error correction software (Quorum), I convert the fq reads to fa using `seqtk`. I wish there were a flag for this, but alas, there is none. 
 
+  ::
+
+  python shannon.py -p 24 -K 75 \
+  -o shannonassemb \
+  --left skewer-trimmed-pair1.fa \
+  --right skewer-trimmed-pair2.fa
 
 5. TransFuse Merge Assemblies
 ----------------------------------
