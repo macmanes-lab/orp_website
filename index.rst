@@ -53,13 +53,6 @@ Plot Results using R
   quit()
   n
 
-.. image:: qualplot.jpg
-   :height: 200px
-   :width: 800 px
-   :scale: 100 %
-   :alt: this is a plot of 2 Illumina read datasets
-   :align: left
-
 
 2. Error Correct
 -----------------------------------
@@ -90,11 +83,11 @@ One should aggressively hunt down adapter sequeunces and get rid of them. In con
 NOTE: Trimmomatic is a little (or maybe a lot) faster, so in general I use
 ::
 
-  trimmomatic PE -threads 24 -baseout /mnt/lustre/macmaneslab/macmanes/rcorr/fiberlobe.TRIM.fastq \
+  trimmomatic PE -threads 24 -baseout reads.TRIM.fastq \
   reads/SRR1522987_1.fastq \
   reads/SRR1522987_2.fastq \
   LEADING:3 TRAILING:3 \
-  ILLUMINACLIP:/mnt/lustre/macmaneslab/macmanes/Oyster_River_Protocol//barcodes/barcodes.fa:2:30:10 MINLEN:25
+  ILLUMINACLIP:barcodes.fa:2:30:10 MINLEN:25
 
 4. Assemble
 -----------------------------------
