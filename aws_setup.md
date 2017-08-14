@@ -70,7 +70,7 @@ nano /home/ubuntu/Oyster_River_Protocol/software/busco/config/config.ini
 
 ### add this line under the `[busco] line`
 
-lineage_path = $HOME/busco_dbs/eukaryota_odb9
+lineage_path = /home/ubuntu/busco_dbs/eukaryota_odb9
 
 ### obviously, if you're using another database, that name will change.
 ```
