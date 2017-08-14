@@ -24,9 +24,6 @@ Some method you'd like me to benchmark? File an `issue <https://github.com/macma
  :doc:`aws_setup`
 --------------------------------------------------
 
---------------------------------------------------
- :doc:`full_instructions`
---------------------------------------------------
 
 1. Installing the software
 -----------------------------------
@@ -58,3 +55,8 @@ Thids command will run the enture ORP. You can add the `--dry-run` flag to the e
     READ1=SRR2016923_1.fastq \
     READ2=SRR2016923_2.fastq \
     RUNOUT=SRR2016923
+
+
+--------------------------------------------------
+ :doc:`full_instructions`
+--------------------------------------------------

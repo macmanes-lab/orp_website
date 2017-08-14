@@ -9,9 +9,7 @@ These instructions work with a standard Ubuntu 16.04 machine available on AWS. S
 ### Update Software and install things from apt-get
 
 ```
-sudo apt-get update && sudo apt-get -y upgrade
-
-sudo apt-get -y install ruby build-essential
+sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ruby build-essential mcl
 
 ```
 
@@ -28,13 +26,16 @@ sudo chown -R ubuntu:ubuntu /mnt
 
 ```
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
-test -d ~/.linuxbrew && PATH="$HOME/.linuxbrew/bin:$PATH"
-test -d /home/linuxbrew/.linuxbrew && PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-test -r ~/.bash_profile && echo 'export PATH="$(brew --prefix)/bin:$PATH"' >>~/.bash_profile
 echo 'export PATH="$(brew --prefix)/bin:$PATH"' >>~/.profile
 brew tap homebrew/science
 brew update
-brew install gcc python2 python3
+brew install gcc python python3
+```
+
+### Install Python Modules
+
+```
+pip2 install cvxopt numpy
 ```
 
 ### Install the ORP
@@ -44,7 +45,26 @@ git clone https://github.com/macmanes-lab/Oyster_River_Protocol.git
 cd Oyster_River_Protocol
 make
 
+
+### Make sure to add the items to your profile file, as needed.
 ```
+
+### Test the Installation
+
+```
+./oyster.mk main \
+MEM=15 \
+CPU=2 \
+READ1=sampledata/test.1.fq.gz \
+READ2=sampledata/test.2.fq.gz \
+RUNOUT=test
+```
+
+
+
+
+
+
 cd
 curl -LO https://github.com/TransDecoder/TransDecoder/archive/2.0.1.tar.gz
 tar -xvzf 2.0.1.tar.gz
