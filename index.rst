@@ -37,7 +37,7 @@ Here are the instructions for installation
 2. List of dependencies
 ------------------------
 
-- Rcorrector, Trimmomatic, Trinity, SPAdes, Shannon, MCL, Metis, OrthoFuser, BLAST, seqtk, BUSCO (make sure to install databases), TransRate.
+- Rcorrector, HMMER, Trimmomatic, Trinity, SPAdes, Shannon, MCL, Metis, OrthoFuser, BLAST, seqtk, BUSCO (make sure to install databases), TransRate (the ORP version packaged here).
 - Python modules numpy, scipy, biopython, cvxopt
 
 3. Usage
