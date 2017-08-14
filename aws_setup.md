@@ -73,7 +73,7 @@ lineage_path = /home/ubuntu/busco_dbs/eukaryota_odb9
 
 ### obviously, if you're using another database, that name will change.
 
-### you'll need to change the PATH entries for, at least, BLAST and HMMER... (see https://gitlab.com/ezlab/busco/issues/46). try `which hmmscan` and `which blastp` to find locations. 
+### you'll need to change the PATH entries for, at least, BLAST and HMMER... (see https://gitlab.com/ezlab/busco/issues/46). try `which hmmscan` and `which blastp` to find locations.
 ```
 
 ### Test the Installation
