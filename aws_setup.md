@@ -13,20 +13,14 @@ sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ruby b
 
 ```
 
-### Format and Mount hard drive (if needed)
-
-```
-sudo mkfs -t ext4 /dev/xvdf
-sudo mount /dev/xvdf /mnt
-sudo chown -R ubuntu:ubuntu /mnt
-```
 
 ### Install LinuxBrew
 
 
 ```
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
-echo 'export PATH="$(brew --prefix)/bin:$PATH"' >>~/.profile
+echo 'export PATH="/home/ubuntu/.linuxbrew/bin:$PATH"' >> ~/.profile
+source ~/.profile
 brew tap homebrew/science
 brew update
 brew install gcc python python3 metis parallel
@@ -88,7 +82,7 @@ cd sampledata
 
 ../oyster.mk main \
 MEM=15 \
-CPU=2 \
+CPU=8 \
 READ1=test.1.fq.gz \
 READ2=test.2.fq.gz \
 RUNOUT=test
