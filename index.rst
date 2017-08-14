@@ -25,7 +25,7 @@ Some method you'd like me to benchmark? File an `issue <https://github.com/macma
 --------------------------------------------------
 
 --------------------------------------------------
- :doc:`aws_setup`
+ :doc:`full_instructions`
 --------------------------------------------------
 
 1. Installing the software
@@ -49,7 +49,7 @@ At the end of the `make` routein, there may be some things you need to add to yo
 
 3. Usage
 ---------
-
+Thids command will run the enture ORP. You can add the `--dry-run` flag to the end to see the individual commands that it will run.
 ::
 
     /path/to/Oyster_River_Protocol/oyster.mk main \

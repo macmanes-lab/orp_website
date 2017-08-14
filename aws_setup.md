@@ -1,9 +1,9 @@
-# How to set up AWS machine for assembly
+# How to set up a clean AWS instance for the ORP
 ---
 
 If you are hoping to attempt a Trinity assembly, requirements for RAM = .5 * X million read pairs. For instance, to assemble 40 million paired-end reads using Trinity, you'll need a minimum of 20Gb of RAM.
 
-These instructions work with a standard Ubuntu 14.04 machine available on AWS. Similar instructions should work for people on their own workstations, especially if you have `sudo` privileges. 
+These instructions work with a standard Ubuntu 16.04 machine available on AWS. Similar instructions should work for people on their own workstations, especially if you have `sudo` privileges.
 
 
 ### Update Software and install things from apt-get
@@ -11,11 +11,7 @@ These instructions work with a standard Ubuntu 14.04 machine available on AWS. S
 ```
 sudo apt-get update && sudo apt-get -y upgrade
 
-sudo apt-get -y install cmake sparsehash valgrind libboost-atomic1.55-dev libibnetdisc-dev ruby-full gsl-bin \
-      libgsl0-dev libgsl0ldbl libboost1.55-all-dev libboost1.55-dbg subversion tmux git curl bowtie \
-      libncurses5-dev samtools gcc make g++ python-dev unzip dh-autoreconf default-jre python-pip zlib1g-dev \
-      hmmer libhdf5-dev r-base pkg-config libpng12-dev libfreetype6-dev python-sklearn build-essential \
-      libsm6 libxrender1 libfontconfig1 liburi-escape-xs-perl emboss liburi-perl infernal python-numpy
+sudo apt-get -y install ruby build-essential
 
 ```
 
@@ -27,17 +23,26 @@ sudo mount /dev/xvdf /mnt
 sudo chown -R ubuntu:ubuntu /mnt
 ```
 
-### Install SolexaQA
+### Install LinuxBrew
 
 
 ```
-curl -LO http://downloads.sourceforge.net/project/solexaqa/src/SolexaQA%2B%2B_v3.1.4.zip
-unzip SolexaQA%2B%2B_v3.1.4.zip
-cd Linux_x64
-PATH=$PATH:$(pwd)
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+test -d ~/.linuxbrew && PATH="$HOME/.linuxbrew/bin:$PATH"
+test -d /home/linuxbrew/.linuxbrew && PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+test -r ~/.bash_profile && echo 'export PATH="$(brew --prefix)/bin:$PATH"' >>~/.bash_profile
+echo 'export PATH="$(brew --prefix)/bin:$PATH"' >>~/.profile
+brew tap homebrew/science
+brew update
+brew install gcc python2 python3
 ```
 
-### Install Transdecoder
+### Install the ORP
+
+```
+git clone https://github.com/macmanes-lab/Oyster_River_Protocol.git
+cd Oyster_River_Protocol
+make
 
 ```
 cd
