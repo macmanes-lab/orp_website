@@ -20,9 +20,6 @@ Some method you'd like me to benchmark? File an `issue <https://github.com/macma
 .. |ImageLink| image:: https://badges.gitter.im/macmanes-lab/Oyster_River_Protocol.svg
 .. _ImageLink: https://gitter.im/macmanes-lab/Oyster_River_Protocol
 
---------------------------------------------------
- :doc:`aws_setup`
---------------------------------------------------
 
 
 1. Installing the software
@@ -31,22 +28,21 @@ In general, the ORP can be successfully and easily installed on Linux operating 
 Before the ORP software can be installed, you must have LinuxBrew installed. See instructions at http://linuxbrew.sh or http://angus.readthedocs.io/en/2017/linuxbrew_install.html
 
 Here are the instructions for installation
-::
 
-  git clone https://github.com/macmanes-lab/Oyster_River_Protocol.git
-  cd Oyster_River_Protocol
-  make
+--------------------------------------------------
+ :doc:`aws_setup`
+--------------------------------------------------
 
-At the end of the `make` routein, there may be some things you need to add to your `$PATH`. Typically these things shoud be added to `~/.bash_profile` or `~/.profile` or `~/.zshrc`, or someplace else.
 
 2. List of dependencies
 ------------------------
 
-- Rcorrector, Trimmomatic, Trinity, SPAdes, Shannon (requires mcl and cvxopt), OrthoFuser, BLAST, seqtk, BUSCO (make sure to install databases), TransRate.
+- Rcorrector, Trimmomatic, Trinity, SPAdes, Shannon, MCL, Metis, OrthoFuser, BLAST, seqtk, BUSCO (make sure to install databases), TransRate.
+- Python modules numpy, scipy, biopython, cvxopt
 
 3. Usage
 ---------
-Thids command will run the enture ORP. You can add the `--dry-run` flag to the end to see the individual commands that it will run.
+This command will run the enture ORP. You can add the ```--dry-run``` flag to the end to see the individual commands that it will run.
 ::
 
     /path/to/Oyster_River_Protocol/oyster.mk main \
