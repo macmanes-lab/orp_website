@@ -52,7 +52,33 @@ make
 ### Set up BUSCO
 
 ```
+### Download databases
+
+mkdir $HOME/busco_dbs && cd $HOME/busco_dbs
+
+# Eukaryota
+wget http://busco.ezlab.org/v2/datasets/eukaryota_odb9.tar.gz
+wget http://busco.ezlab.org/v2/datasets/fungi_odb9.tar.gz
+wget http://busco.ezlab.org/v2/datasets/metazoa_odb9.tar.gz
+wget http://busco.ezlab.org/v2/datasets/nematoda_odb9.tar.gz
+wget http://busco.ezlab.org/v2/datasets/arthropoda_odb9.tar.gz
+wget http://busco.ezlab.org/v2/datasets/insecta_odb9.tar.gz
+wget http://busco.ezlab.org/v2/datasets/vertebrata_odb9.tar.gz
+wget http://busco.ezlab.org/v2/datasets/tetrapoda_odb9.tar.gz
+wget http://busco.ezlab.org/v2/datasets/aves_odb9.tar.gz
+wget http://busco.ezlab.org/v2/datasets/mammalia_odb9.tar.gz
+
+tar -zxf eukaryota_odb9.tar.gz
+
+### Move and edit config file
 mv /home/ubuntu/Oyster_River_Protocol/software/busco/config/config.ini.default /home/ubuntu/Oyster_River_Protocol/software/busco/config/config.ini
+nano /home/ubuntu/Oyster_River_Protocol/software/busco/config/config.ini
+
+### add this line under the `[busco] line`
+
+lineage_path = $HOME/busco_dbs/eukaryota_odb9
+
+### obviously, if you're using another database, that name will change.
 ```
 
 ### Test the Installation
@@ -63,8 +89,8 @@ cd sampledata
 ../oyster.mk main \
 MEM=15 \
 CPU=2 \
-READ1=sampledata/test.1.fq.gz \
-READ2=sampledata/test.2.fq.gz \
+READ1=test.1.fq.gz \
+READ2=test.2.fq.gz \
 RUNOUT=test
 ```
 
