@@ -9,7 +9,7 @@ These instructions work with a standard Ubuntu 16.04 machine available on AWS. S
 ### Update Software and install things from apt-get
 
 ```
-sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ruby build-essential mcl
+sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ruby build-essential mcl python python-pip
 
 ```
 
@@ -29,13 +29,13 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master
 echo 'export PATH="$(brew --prefix)/bin:$PATH"' >>~/.profile
 brew tap homebrew/science
 brew update
-brew install gcc python python3
+brew install gcc python python3 metis parallel
 ```
 
 ### Install Python Modules
 
 ```
-pip2 install cvxopt numpy
+sudo pip install cvxopt numpy biopython scipy
 ```
 
 ### Install the ORP
@@ -49,10 +49,18 @@ make
 ### Make sure to add the items to your profile file, as needed.
 ```
 
+### Set up BUSCO
+
+```
+mv /home/ubuntu/Oyster_River_Protocol/software/busco/config/config.ini.default /home/ubuntu/Oyster_River_Protocol/software/busco/config/config.ini
+```
+
 ### Test the Installation
 
 ```
-./oyster.mk main \
+cd sampledata
+
+../oyster.mk main \
 MEM=15 \
 CPU=2 \
 READ1=sampledata/test.1.fq.gz \
