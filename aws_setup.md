@@ -22,7 +22,7 @@ echo 'export PATH="/home/ubuntu/.linuxbrew/bin:$PATH"' >> ~/.profile
 source ~/.profile
 brew tap homebrew/science
 brew update
-brew install gcc python python3 metis parallel
+brew install gcc python metis parallel
 ```
 
 ### Install Python Modules
@@ -40,6 +40,7 @@ make
 
 
 ### Make sure to add the items to your profile file, as needed.
+Make sure to ```source``` the profile file after, to make sure everything is loaded.  
 ```
 
 ### Set up BUSCO
@@ -73,7 +74,9 @@ lineage_path = /home/ubuntu/busco_dbs/eukaryota_odb9
 
 ### obviously, if you're using another database, that name will change.
 
-### you'll need to change the PATH entries for, at least, BLAST and HMMER... (see https://gitlab.com/ezlab/busco/issues/46). try `which hmmscan` and `which blastp` to find locations.
+### you'll need to change the PATH entries for, at least,
+BLAST and HMMER... (see https://gitlab.com/ezlab/busco/issues/46).
+Try ```which hmmscan``` and ```which blastp``` to find locations.
 ```
 
 ### Test the Installation
