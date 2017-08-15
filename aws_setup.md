@@ -82,7 +82,7 @@ Try ```which hmmscan``` and ```which blastp``` to find locations.
 ### Test the Installation
 
 ```
-cd sampledata
+cd $HOME/Oyster_River_Protocol/sampledata
 
 ../oyster.mk main \
 MEM=15 \
