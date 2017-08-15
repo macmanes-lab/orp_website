@@ -2,7 +2,7 @@
 Oyster River Protocol For Transcriptome Assembly
 ==============================================
 
-    The Oyster River Protocol for transcriptome assembly is an actively developed, evidenced based method for optimizing transcriptome assembly. The preprint corresponding to this protocol is here: http://www.biorxiv.org/content/early/2016/02/18/035642.
+    The Oyster River Protocol for (eukaryotic) transcriptome assembly is an actively developed, evidenced based method for optimizing transcriptome assembly. The preprint corresponding to this protocol is here: http://www.biorxiv.org/content/early/2016/02/18/035642.
     In brief, the protocol assembles the transcriptome using a multi-kmer multi-assembler approach, then merges those assemblies into 1 final assembly.
 
 --------------------------------------------------
@@ -24,10 +24,13 @@ Some method you'd like me to benchmark? File an `issue <https://github.com/macma
 
 1. Installing the software
 -----------------------------------
-In general, the ORP can be successfully and easily installed on Linux operating systems. OSX might work, but I have not tried and it is unsupported. Don't try this on Windows.
-Before the ORP software can be installed, you must have LinuxBrew installed. See instructions at http://linuxbrew.sh or http://angus.readthedocs.io/en/2017/linuxbrew_install.html
+In general, the ORP can be successfully and easily installed on Linux operating systems. OSX might work,
+but I have not tried and it is unsupported. Don't try this on Windows.
+Before the ORP software can be installed, you must have LinuxBrew installed.
+See instructions at http://linuxbrew.sh or http://angus.readthedocs.io/en/2017/linuxbrew_install.html
 
-Here are the instructions for installation
+Here are the instructions for installation. Getting stuff installed will be the hard part.
+Once you have things installed, should be smooth sailing!
 
 --------------------------------------------------
  :doc:`aws_setup`
@@ -36,13 +39,14 @@ Here are the instructions for installation
 
 2. List of dependencies
 ------------------------
+Sorry there are so many. This is a complex protocol..
 
 - Rcorrector, HMMER, Trimmomatic, Trinity, SPAdes, Shannon, MCL, Metis, OrthoFuser, BLAST, seqtk, BUSCO (make sure to install databases), TransRate (the ORP version packaged here).
 - Python modules numpy, scipy, biopython, cvxopt
 
 3. Usage
 ---------
-This command will run the enture ORP. You can add the ```--dry-run``` flag to the end to see the individual commands that it will run.
+This command will run the entire ORP in one shot! You can add the ```--dry-run``` flag to the end to see the individual commands that it will run, if you are curious.
 ::
 
     /path/to/Oyster_River_Protocol/oyster.mk main \
