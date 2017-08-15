@@ -81,6 +81,8 @@ Try ```which hmmscan``` and ```which blastp``` to find locations.
 
 ### Test the Installation
 
+This is a very small data set that should assemble ~30 transcripts. It will finished in a few minutes or less using desktop-sized computer. The BUSCO numbers you get at the end are bad, for obvious reasons. If this finishes without error, you're good to move on to a 'real' assembly!! Good luck, and ping me on Gitter if issues! 
+
 ```
 cd $HOME/Oyster_River_Protocol/sampledata
 
