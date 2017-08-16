@@ -39,8 +39,9 @@ Once you have things installed, should be smooth sailing!
 
 2. List of dependencies
 ------------------------
-Sorry there are so many. This is a complex protocol..
+Sorry there are so many. Assembly is complex..
 
+- Linuxbrew. You must have Linuxbrew installed before you can install the ORP.
 - Rcorrector, HMMER, Trimmomatic, Trinity, SPAdes, Shannon, MCL, Metis, OrthoFuser, BLAST, seqtk, BUSCO (make sure to install databases), TransRate (the ORP version packaged here).
 - Python modules numpy, scipy, biopython, cvxopt
 
@@ -51,7 +52,7 @@ This command will run the entire ORP in one shot! You can add the ```--dry-run``
 
     /path/to/Oyster_River_Protocol/oyster.mk main \
     MEM=150 \
-    CPU=42 \
+    CPU=24 \
     READ1=SRR2016923_1.fastq \
     READ2=SRR2016923_2.fastq \
     RUNOUT=SRR2016923
