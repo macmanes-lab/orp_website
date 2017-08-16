@@ -2,7 +2,7 @@
 Oyster River Protocol For Transcriptome Assembly
 ==============================================
 
-    The Oyster River Protocol for (eukaryotic) transcriptome assembly is an actively developed, evidenced based method for optimizing transcriptome assembly. The preprint corresponding to this protocol is here: http://www.biorxiv.org/content/early/2016/02/18/035642.
+    The Oyster River Protocol for (eukaryotic) transcriptome assembly is an actively developed, evidenced based method for optimizing transcriptome assembly. The preprint corresponding to this protocol is here: http://www.biorxiv.org/content/early/2017/08/16/177253.
     In brief, the protocol assembles the transcriptome using a multi-kmer multi-assembler approach, then merges those assemblies into 1 final assembly.
 
 --------------------------------------------------
