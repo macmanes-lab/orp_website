@@ -28,7 +28,7 @@ brew install gcc python metis parallel
 ### Install Python Modules
 
 ```
-sudo pip install cvxopt numpy biopython scipy
+pip install cvxopt numpy biopython scipy
 ```
 
 ### Install the ORP
@@ -65,8 +65,8 @@ wget http://busco.ezlab.org/v2/datasets/mammalia_odb9.tar.gz
 tar -zxf eukaryota_odb9.tar.gz
 
 ### Move and edit config file
-mv /home/ubuntu/Oyster_River_Protocol/software/busco/config/config.ini.default /home/ubuntu/Oyster_River_Protocol/software/busco/config/config.ini
-nano /home/ubuntu/Oyster_River_Protocol/software/busco/config/config.ini
+mv $HOME/Oyster_River_Protocol/software/busco/config/config.ini.default $HOME/Oyster_River_Protocol/software/busco/config/config.ini
+nano $HOME/Oyster_River_Protocol/software/busco/config/config.ini
 
 ### add this line under the `[busco] line`
 
