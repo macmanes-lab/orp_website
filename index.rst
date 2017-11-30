@@ -38,7 +38,7 @@ Here are the instructions for installation. Getting stuff installed will be the 
 
 2. List of dependencies
 ------------------------
-Sorry there are so many. Assembly is complex.. The makefile should take care of this. 
+Sorry there are so many. Assembly is complex.. The makefile should take care of this.
 
 - Linuxbrew. You must have Linuxbrew installed before you can install the ORP.
 - Rcorrector, HMMER, Trimmomatic, Trinity, SPAdes, Shannon, MCL, Metis, OrthoFuser, BLAST, seqtk, BUSCO (make sure to install databases), TransRate (the ORP version packaged here).
