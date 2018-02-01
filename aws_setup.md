@@ -29,7 +29,7 @@ brew install gcc python metis parallel
 ### Install Python Modules
 
 ```
-sudo pip install cvxopt numpy biopython scipy
+pip install cvxopt numpy biopython scipy
 ```
 
 ### Install the ORP
@@ -37,7 +37,7 @@ sudo pip install cvxopt numpy biopython scipy
 ```
 git clone https://github.com/macmanes-lab/Oyster_River_Protocol.git
 cd Oyster_River_Protocol
-make
+make -j4
 
 
 ### Make sure to add the items to your profile file, as needed.
@@ -66,8 +66,8 @@ wget http://busco.ezlab.org/v2/datasets/mammalia_odb9.tar.gz
 tar -zxf eukaryota_odb9.tar.gz
 
 ### Move and edit config file
-mv /home/ubuntu/Oyster_River_Protocol/software/busco/config/config.ini.default /home/ubuntu/Oyster_River_Protocol/software/busco/config/config.ini
-nano /home/ubuntu/Oyster_River_Protocol/software/busco/config/config.ini
+mv $HOME/Oyster_River_Protocol/software/busco/config/config.ini.default $HOME/Oyster_River_Protocol/software/busco/config/config.ini
+nano $HOME/Oyster_River_Protocol/software/busco/config/config.ini
 
 ### add this line under the `[busco] line`
 

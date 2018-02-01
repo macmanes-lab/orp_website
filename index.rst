@@ -2,7 +2,7 @@
 Oyster River Protocol For Transcriptome Assembly
 ==============================================
 
-    The Oyster River Protocol for (eukaryotic) transcriptome assembly is an actively developed, evidenced based method for optimizing transcriptome assembly. The preprint corresponding to this protocol is here: http://www.biorxiv.org/content/early/2016/02/18/035642.
+    The Oyster River Protocol for (eukaryotic) transcriptome assembly is an actively developed, evidenced based method for optimizing transcriptome assembly. The preprint corresponding to this protocol is here: http://www.biorxiv.org/content/early/2017/08/16/177253.
     In brief, the protocol assembles the transcriptome using a multi-kmer multi-assembler approach, then merges those assemblies into 1 final assembly.
 
 --------------------------------------------------
@@ -29,8 +29,7 @@ but I have not tried and it is unsupported. Don't try this on Windows.
 Before the ORP software can be installed, you must have LinuxBrew installed.
 See instructions at http://linuxbrew.sh or http://angus.readthedocs.io/en/2017/linuxbrew_install.html
 
-Here are the instructions for installation. Getting stuff installed will be the hard part.
-Once you have things installed, should be smooth sailing!
+Here are the instructions for installation. Getting stuff installed will be the hard part (the included makefile should do must/all of the hard work, though). Once you have things installed, should be smooth sailing!
 
 --------------------------------------------------
  :doc:`aws_setup`
@@ -39,7 +38,7 @@ Once you have things installed, should be smooth sailing!
 
 2. List of dependencies
 ------------------------
-Sorry there are so many. Assembly is complex..
+Sorry there are so many. Assembly is complex.. The makefile should take care of this.
 
 - Linuxbrew. You must have Linuxbrew installed before you can install the ORP.
 - Rcorrector, HMMER, Trimmomatic, Trinity, SPAdes, Shannon, MCL, Metis, OrthoFuser, BLAST, seqtk, BUSCO (make sure to install databases), TransRate (the ORP version packaged here).
