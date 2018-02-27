@@ -53,7 +53,7 @@ Make sure to ```source``` the profile file after, to make sure everything is loa
 ```
 ### Download databases
 
-mkdir $HOME/busco_dbs && cd $HOME/busco_dbs
+mkdir $HOME/Oyster_River_Protocol/busco_dbs && cd $HOME/Oyster_River_Protocol/busco_dbs
 
 # Eukaryota
 wget http://busco.ezlab.org/v2/datasets/eukaryota_odb9.tar.gz
@@ -73,13 +73,13 @@ cd
 
 ### Move and edit config file (change everyplace it says `mmacmane` to your user name)
 
-mv Oyster_River_Protocol/software/config.ini Oyster_River_Protocol/software/busco/config/config.ini
-nano Oyster_River_Protocol/software/busco/config/config.ini
+mv $HOME/Oyster_River_Protocol/software/config.ini $HOME/Oyster_River_Protocol/software/busco/config/config.ini
+nano $HOME/Oyster_River_Protocol/software/busco/config/config.ini
 
 
 ### add this line under the `[busco] line`
 
-lineage_path = $HOME/busco_dbs/eukaryota_odb9
+lineage_path = $HOME/Oyster_River_Protocol/busco_dbs/eukaryota_odb9
 
 ### obviously, if you're using another database, that name will change.
 
