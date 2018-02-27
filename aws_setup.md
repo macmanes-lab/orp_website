@@ -17,8 +17,12 @@ sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ruby b
 
 
 ```
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
-echo 'export PATH="/home/ubuntu/.linuxbrew/bin:$PATH"' >> ~/.profile
+sudo mkdir /home/linuxbrew
+sudo chown $USER:$USER /home/linuxbrew
+git clone https://github.com/Linuxbrew/brew.git /home/linuxbrew/.linuxbrew
+echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"' >> ~/.profile
+echo 'export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"' >> ~/.profile
+echo 'export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"' >> ~/.profile
 source ~/.profile
 brew tap brewsci/science
 brew tap brewsci/bio
