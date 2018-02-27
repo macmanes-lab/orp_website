@@ -68,20 +68,21 @@ wget http://busco.ezlab.org/v2/datasets/aves_odb9.tar.gz
 wget http://busco.ezlab.org/v2/datasets/mammalia_odb9.tar.gz
 
 tar -zxf eukaryota_odb9.tar.gz
+cd
 
-### Move and edit config file
-mv $HOME/Oyster_River_Protocol/software/busco/config/config.ini.default $HOME/Oyster_River_Protocol/software/busco/config/config.ini
-nano $HOME/Oyster_River_Protocol/software/busco/config/config.ini
+
+### Move and edit config file (change everyplace it says `mmacmane` to your user name)
+
+mv Oyster_River_Protocol/software/config.ini Oyster_River_Protocol/software/busco/config/config.ini
+nano Oyster_River_Protocol/software/busco/config/config.ini
+
 
 ### add this line under the `[busco] line`
 
-lineage_path = /home/ubuntu/busco_dbs/eukaryota_odb9
+lineage_path = $HOME/busco_dbs/eukaryota_odb9
 
 ### obviously, if you're using another database, that name will change.
 
-### you'll need to change the PATH entries for, at least,
-BLAST and HMMER... (see https://gitlab.com/ezlab/busco/issues/46).
-Try ```which hmmscan``` and ```which blastp``` to find locations.
 ```
 
 ### Test the Installation
