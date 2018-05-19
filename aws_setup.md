@@ -33,7 +33,8 @@ brew install gcc python metis parallel
 ### Install Python Modules
 
 ```
-pip install cvxopt numpy biopython scipy
+pip install --upgrade pip
+pip install cvxopt==1.2.0 numpy==1.14.3 biopython==1.71 scipy==1.1.0
 ```
 
 ### Install the ORP
@@ -41,7 +42,7 @@ pip install cvxopt numpy biopython scipy
 ```
 git clone https://github.com/macmanes-lab/Oyster_River_Protocol.git
 cd Oyster_River_Protocol
-make -j4
+make
 
 
 ### Make sure to add the items to your profile file, as needed.
@@ -92,7 +93,7 @@ This is a very small data set that should assemble ~30 transcripts. It will fini
 ```
 cd $HOME/Oyster_River_Protocol/sampledata
 
-../oyster.mk main \
+$HOME/Oyster_River_Protocol/oyster.mk main \
 MEM=15 \
 CPU=8 \
 READ1=test.1.fq.gz \
