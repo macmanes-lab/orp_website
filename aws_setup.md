@@ -9,7 +9,7 @@ These instructions work with a standard Ubuntu 16.04 machine available on AWS. S
 ### Update Software and install things from apt-get
 
 ```
-sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ruby build-essential mcl python python-pip default-jre
+sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ruby build-essential mcl default-jre
 ```
 
 
@@ -27,7 +27,7 @@ source ~/.profile
 brew tap brewsci/science
 brew tap brewsci/bio
 brew update
-brew install gcc python metis parallel
+brew install gcc python python2 metis parallel
 ```
 
 ### Install Python Modules
