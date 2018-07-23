@@ -1,4 +1,4 @@
-# How to set up a clean AWS instance for the ORP
+# How to install the ORP
 ---
 
 If you are hoping to attempt a Trinity assembly, requirements for RAM = .5 * X million read pairs. For instance, to assemble 40 million paired-end reads using Trinity, you'll need a minimum of 20Gb of RAM.
@@ -7,6 +7,7 @@ These instructions work with a standard Ubuntu 16.04 machine available on AWS. S
 
 
 ### Update Software and install things from apt-get
+This is typically necessary only when starting from a fresh machine. 
 
 ```
 sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ruby build-essential mcl default-jre git
