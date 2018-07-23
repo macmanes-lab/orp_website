@@ -26,8 +26,6 @@ Some method you'd like me to benchmark? File an `issue <https://github.com/macma
 -----------------------------------
 In general, the ORP can be successfully and easily installed on Linux operating systems. OSX might work,
 but I have not tried and it is unsupported. Don't try this on Windows.
-Before the ORP software can be installed, you must have LinuxBrew installed.
-See instructions at http://linuxbrew.sh or http://angus.readthedocs.io/en/2017/linuxbrew_install.html
 
 Here are the instructions for installation. Getting stuff installed will be the hard part (the included makefile should do must/all of the hard work, though). Once you have things installed, should be smooth sailing!
 
@@ -40,14 +38,15 @@ Here are the instructions for installation. Getting stuff installed will be the 
 ------------------------
 Sorry there are so many. Assembly is complex.. The makefile should take care of this.
 
-- Linuxbrew. You must have Linuxbrew installed before you can install the ORP.
-- Rcorrector, HMMER, Trimmomatic, Trinity, SPAdes, Shannon, MCL, Metis, OrthoFuser, BLAST, seqtk, BUSCO (make sure to install databases), TransRate (the ORP version packaged here).
+- Rcorrector, HMMER, Trimmomatic, Trinity, SPAdes, TransABySS, MCL, Metis, OrthoFuser, BLAST, seqtk, BUSCO (make sure to install databases), TransRate (the ORP version packaged here).
 - Python modules numpy, scipy, biopython, cvxopt
 
 3. Usage
 ---------
-This command will run the entire ORP in one shot! You can add the ```--dry-run``` flag to the end to see the individual commands that it will run, if you are curious.
+After activating the `orp_v2` conda environment. this command will run the entire ORP in one shot! You can add the ```--dry-run``` flag to the end to see the individual commands that it will run, if you are curious.
 ::
+
+    source activate orp_v2
 
     /path/to/Oyster_River_Protocol/oyster.mk main \
     MEM=150 \
@@ -56,7 +55,10 @@ This command will run the entire ORP in one shot! You can add the ```--dry-run``
     READ2=SRR2016923_2.fastq \
     RUNOUT=SRR2016923
 
+4. Version 2.0 Changelog
+---------
 
---------------------------------------------------
- :doc:`full_instructions`
---------------------------------------------------
+- The final assembly is now called `$RUNOUT.ORP.fasta`.
+- Shannon has been removed, and TransABySS has been added in it's place. MANY users (and myself) have struggled with the RAM use and runtime of Shannon. TransABySS is much faster, and uses much less RAM.
+- Diamond is leveraged for transcript recovery. It had been noted by some users that a few "real" transcripts were getting lost during the OrthoFuser steps.. Diamond, which is run after, recovers those.
+- The use of LinuxBrew has been removed, in favor of conda. Dependencies are now managed by conda. You will need to launch the `orp_v2` conda environment before assembling.
