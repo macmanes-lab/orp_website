@@ -44,6 +44,9 @@ Sorry there are so many. Assembly is complex.. The makefile should take care of 
 3. Usage
 ---------
 After activating the `orp_v2` conda environment. this command will run the entire ORP in one shot! You can add the ```--dry-run``` flag to the end to see the individual commands that it will run, if you are curious.
+
+**You must use the full PATH to the oyster.mk script for it to work**
+
 ::
 
     source activate orp_v2
@@ -62,3 +65,4 @@ After activating the `orp_v2` conda environment. this command will run the entir
 - Shannon has been removed, and TransABySS has been added in it's place. MANY users (and myself) have struggled with the RAM use and runtime of Shannon. TransABySS is much faster, and uses much less RAM.
 - Diamond is leveraged for transcript recovery. It had been noted by some users that a few "real" transcripts were getting lost during the OrthoFuser steps.. Diamond, which is run after, recovers those.
 - The use of LinuxBrew has been removed, in favor of conda. Dependencies are now managed by conda. You will need to launch the `orp_v2` conda environment before assembling.
+- cd-hit-est is now run as default. 

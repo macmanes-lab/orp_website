@@ -7,7 +7,7 @@ These instructions work with a standard Ubuntu 16.04 machine available on AWS. S
 
 
 ### Update Software and install things from apt-get
-This is typically necessary only when starting from a fresh machine. 
+This is typically necessary only when starting from a fresh machine.
 
 ```
 sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ruby build-essential mcl default-jre git
@@ -23,6 +23,7 @@ Packages are installed mostly via conda - at the end of the make process, you wi
 git clone https://github.com/macmanes-lab/Oyster_River_Protocol.git
 cd Oyster_River_Protocol
 make
+source ~/.profile
 
 
 ### Make sure to add the items to your profile file, as needed.
@@ -64,10 +65,14 @@ This is a very small data set that should assemble ~30 transcripts. It will fini
 
 You must activate the `orp_v2` conda environment, that `make` made for you.
 
+**You must use the full PATH to the oyster.mk script for it to work**
+
 ```
 cd $HOME/Oyster_River_Protocol/sampledata
 
 source activate orp_v2
+
+#note use of full PATH (your PATH to oyster.mk might be different)
 
 $HOME/Oyster_River_Protocol/oyster.mk main \
 MEM=15 \
