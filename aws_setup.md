@@ -10,7 +10,7 @@ These instructions work with a standard Ubuntu 16.04 machine available on AWS. S
 This is typically necessary only when starting from a fresh machine.
 
 ```
-sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ruby build-essential mcl default-jre git
+sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install build-essential git r-base
 ```
 
 
