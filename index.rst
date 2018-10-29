@@ -2,7 +2,7 @@
 Oyster River Protocol For Transcriptome Assembly
 ==============================================
 
-    The Oyster River Protocol for (eukaryotic) transcriptome assembly is an actively developed, evidenced based method for optimizing transcriptome assembly. The manuscript corresponding to this protocol is here: https://peerj.com/articles/5428/ 
+    The Oyster River Protocol for (eukaryotic) transcriptome assembly is an actively developed, evidenced based method for optimizing transcriptome assembly. The manuscript corresponding to this protocol is here: https://peerj.com/articles/5428/
     In brief, the protocol assembles the transcriptome using a multi-kmer multi-assembler approach, then merges those assemblies into 1 final assembly.
 
 --------------------------------------------------
@@ -58,11 +58,20 @@ After activating the `orp_v2` conda environment. this command will run the entir
     READ2=SRR2016923_2.fastq \
     RUNOUT=SRR2016923
 
-4. Version 2.0 Changelog
+4. Changelog
 ---------
+
+Version 2.1
+- Strand specific libraries are now assembled properly, this is enabled by adding the `STRAND=RF` flag.
+- There is a new tool, `strandeval.mk`, which helps you evaluate the strandedness of your assembly.
+- There is a new tool, `report.mk`, which generates an assembly report for you.
+- There is a new tool, `quant.mk`, which facilities the quantitation procedure.
+
+
+Version 2.0
 
 - The final assembly is now called `$RUNOUT.ORP.fasta`.
 - Shannon has been removed, and TransABySS has been added in it's place. MANY users (and myself) have struggled with the RAM use and runtime of Shannon. TransABySS is much faster, and uses much less RAM.
 - Diamond is leveraged for transcript recovery. It had been noted by some users that a few "real" transcripts were getting lost during the OrthoFuser steps.. Diamond, which is run after, recovers those.
 - The use of LinuxBrew has been removed, in favor of conda. Dependencies are now managed by conda. You will need to launch the `orp_v2` conda environment before assembling.
-- cd-hit-est is now run as default. 
+- cd-hit-est is now run as default.
