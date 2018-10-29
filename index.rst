@@ -66,6 +66,7 @@ Version 2.1
 - There is a new tool, `strandeval.mk`, which helps you evaluate the strandedness of your assembly.
 - There is a new tool, `report.mk`, which generates an assembly report for you.
 - There is a new tool, `quant.mk`, which facilities the quantitation procedure.
+- Typing `oyster.mk help`, `report.mk help`, `strandeval.mk help` will print a help message.
 
 
 Version 2.0
