@@ -95,7 +95,7 @@ any method.
 
 ** The `LINEAGE=` flag must be specified, and the database you specify must
 be in `/path/to/Oyster_River_Protocol/busco_dbs`. The Eukaryotic database
-is there by default. 
+is there by default.
 
 ::
 
@@ -114,6 +114,7 @@ is there by default.
 ---------
 
 Version 2.1
+
 - Strand specific libraries are now assembled properly, this is enabled by adding the `STRAND=` flag. Both `RF` and `FR` are options, tho `RF` is the most common option.
 - There is a new tool, `strandeval.mk`, which helps you evaluate the strandedness of your assembly.
 - There is a new tool, `report.mk`, which generates an assembly report for you.

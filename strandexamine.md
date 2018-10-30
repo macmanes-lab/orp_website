@@ -1,6 +1,4 @@
-==============================================
-Oyster River Strand Exam Tool
-==============================================
+# Oyster River Strand Exam Tool
 
 The Oyster River Strand Exam Tool, which is adapted from the Trinity Strand Examination script (https://github.com/trinityrnaseq/trinityrnaseq/wiki/Examine-Strand-Specificity) can be used as per the following:
 
