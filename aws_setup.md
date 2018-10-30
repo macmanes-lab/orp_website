@@ -31,10 +31,10 @@ source ~/.profile
 ```
 
 ### Edit `config.ini`.
-You should just have to change the user path info (the stuff before `/Oyster_River_Protocol/...`)
+You should just have to change the user path info (the stuff before `/Oyster_River_Protocol/...`). A simple way to do this is via sed.
 
 ```
-nano $HOME/Oyster_River_Protocol/software/config.ini
+sed -i  's_ubuntu_$(whoami)_g' $HOME/Oyster_River_Protocol/software/config.ini
 ```
 
 You may want to install additional BUSCO databases - the Euk. database is installed and used by default.
@@ -75,6 +75,7 @@ source activate orp_v2
 #note use of full PATH (your PATH to oyster.mk might be different)
 
 $HOME/Oyster_River_Protocol/oyster.mk main \
+STRAND=RF \
 MEM=15 \
 CPU=8 \
 READ1=test.1.fq.gz \
