@@ -19,7 +19,7 @@ This plot, showing a somewhat normal distribution, is an example of a *non-stran
 ![](pics/notss.png)
 
 
-This plot, showing an extremely biased (can be either left or right side) unimodal distribution, is an example of a *strand-specific* library, assembled properly.
+This plot, showing an extremely biased (can be either left or right side) unimodal distribution, is an example of a *strand-specific* library, assembled properly. It should be noted that as a result of imperfect library generation (wet-lab issue), there may be a second, smaller peak on the opposite side of the histogram. Basically, the quality of stand-specific libraries varies, and this may introduce noise in this analysis.  
 
 ![](pics/ss.png)
 
