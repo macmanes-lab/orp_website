@@ -13,7 +13,7 @@ Contact Information
     - Email (good): Matthew.MacManes@unh.edu
     - Twitter (good):  `@MacManes <http://twitter.com/macmanes>`_
     - Phone (discouraged): 603-862-4052
-    - Office (I'm hiding under my desk): 189 Rudman Hall
+    - Office (I'm hiding under my desk): 434 Gregg Hall
 
 Some method you'd like me to benchmark? File an `issue <https://github.com/macmanes-lab/Oyster_River_Protocol/issues>`_
 
