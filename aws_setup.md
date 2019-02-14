@@ -10,14 +10,14 @@ These instructions work with a standard Ubuntu 16.04 machine available on AWS. S
 This is typically necessary only when starting from a fresh machine.
 
 ```
-sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install build-essential git
+sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install build-essential git python python-pip
 ```
 
 
 
 ### Install the ORP.
 
-Packages are installed mostly via conda - at the end of the make process, you will have an `orp_v2` conda environment, that will contain everything you need for assembly. Make sure to type `source ~/.profile` and the end of the `make` process/
+Packages are installed mostly via conda - at the end of the make process, you will have an `orp` conda environment, that will contain everything you need for assembly. Make sure to type `source ~/.profile` and the end of the `make` process/
 
 ```
 git clone https://github.com/macmanes-lab/Oyster_River_Protocol.git
@@ -63,14 +63,14 @@ cd
 
 This is a very small data set that should assemble ~30 transcripts. It will finished in a few minutes or less using desktop-sized computer. The BUSCO numbers you get at the end are bad, for obvious reasons. If this finishes without error, you're good to move on to a 'real' assembly!! Good luck, and ping me on Gitter if issues!
 
-You must activate the `orp_v2` conda environment, that `make` made for you.
+You must activate the `orp` conda environment, that `make` made for you.
 
 **You must use the full PATH to the oyster.mk script for it to work**
 
 ```
 cd $HOME/Oyster_River_Protocol/sampledata
 
-source activate orp_v2
+source activate orp
 
 #note use of full PATH (your PATH to oyster.mk might be different)
 
