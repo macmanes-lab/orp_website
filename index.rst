@@ -113,7 +113,13 @@ is there by default.
 6. Changelog
 ---------
 
-Version 2.1
+Version 2.1.1
+
+- Updated conda environment name to `orp` rather than `orp_v2`
+- Users may now specify kmer length to be used for Trinity using flag `TRINITY_KMER=INT` and for SPAdes using flags `SPADES1_KMER=INT` for the 1st SPAdes run and `SPADES2_KMER=INT` for the 2nd SPAdes run.  Note the max kmer for trinity is 32, and for SPAdes it is 96. For all assemblies, the kmer length must be read_length-1 at a maximum.
+- Add a check to make sure reads are of sufficient length given your selected assembly kmer length
+
+Version 2.1.0
 
 - Strand specific libraries are now assembled properly, this is enabled by adding the `STRAND=` flag. Both `RF` and `FR` are options, tho `RF` is the most common option.
 - There is a new tool, `strandeval.mk`, which helps you evaluate the strandedness of your assembly.
