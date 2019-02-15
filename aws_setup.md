@@ -3,7 +3,7 @@
 
 If you are hoping to attempt a Trinity assembly, requirements for RAM = .5 * X million read pairs. For instance, to assemble 40 million paired-end reads using Trinity, you'll need a minimum of 20Gb of RAM.
 
-These instructions work with a standard Ubuntu 16.04 machine available on AWS. Similar instructions should work for people on their own workstations, especially if you have `sudo` privileges, or even if you don't.
+These instructions work with a standard Ubuntu 16.04 or 18.04 machine available on AWS. Similar instructions should work for people on their own workstations, especially if you have `sudo` privileges, or even if you don't.
 
 
 ### Update Software and install things from apt-get
@@ -81,4 +81,44 @@ CPU=8 \
 READ1=test.1.fq.gz \
 READ2=test.2.fq.gz \
 RUNOUT=test
+```
+
+At the end of the successful run, you should see some text that looks like this. Your numbers will be different, but should similar. Assembly is not deterministic.
+
+```
+7|  #
+ 6| ##
+ 5| ##
+ 4| ##
+ 3| ###
+ 2| ###       #
+ 1| ###  ##   #
+   -----------
+
+------------------------
+|       Summary        |
+------------------------
+|   observations: 20   |
+| min value: -1.000000 |
+|   mean : -0.987400   |
+| max value: -0.935000 |
+------------------------
+
+
+*****  See the following link for interpretation *****
+*****  https://oyster-river-protocol.readthedocs.io/en/latest/strandexamine.html *****
+
+
+
+*****  QUALITY REPORT FOR: test using the ORP version 2.1.0 ****
+*****  THE ASSEMBLY CAN BE FOUND HERE: /root/ORP/sampledata/assemblies/test.ORP.fasta ****
+
+*****  BUSCO SCORE ~~~~~>               C:0.0%[S:0.0%,D:0.0%],F:0.3%,M:99.7%,n:303
+*****  TRANSRATE SCORE ~~~~~>           0.37518
+*****  TRANSRATE OPTIMAL SCORE ~~~~~>   0.56393
+*****  UNIQUE GENES ORP ~~~~~>          39
+*****  UNIQUE GENES TRINITY ~~~~~>      31
+*****  UNIQUE GENES SPADES55 ~~~~~>     22
+*****  UNIQUE GENES SPADES75 ~~~~~>     23
+*****  UNIQUE GENES TRANSABYSS ~~~~~>   35
 ```
