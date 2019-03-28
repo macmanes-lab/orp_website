@@ -74,8 +74,9 @@ source activate orp
 
 #note use of full PATH (your PATH to oyster.mk might be different)
 
-$HOME/Oyster_River_Protocol/oyster.mk main \
+$HOME/Oyster_River_Protocol/oyster.mk \
 STRAND=RF \
+TPM_FILT=0.2 \
 MEM=15 \
 CPU=8 \
 READ1=test.1.fq.gz \

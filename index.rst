@@ -52,7 +52,8 @@ After activating the `orp` conda environment. this command will run the entire O
 
     source activate orp
 
-    /path/to/Oyster_River_Protocol/oyster.mk main \
+    /path/to/Oyster_River_Protocol/oyster.mk \
+    TPM_FILT=0.2 \
     STRAND=RF \
     MEM=150 \
     CPU=24 \
@@ -112,6 +113,16 @@ is there by default.
 
 6. Changelog
 ---------
+
+Version 2.2.0
+
+- FIXED a critical bug whereby the incorrect transcript was picked from a given orthogroup. This fix will potentially improve BUSCO scores dramatically.
+- ADDED a flag to filter lowly expressed transcripts out of the dataset. Implement via `TPM_FILT=<float>`. The unfiltered assembly is available in the `assemblies/working/` folder. We also implement some methods to try and make sure that we don't eliminate any "real" transcripts in this process of TPM filtering.
+- ADDED a check to make sure that your read files exist at the specified location.
+- FIXED a bug the prevented proper BUSCO checkpointing (thanks @AdamStuckert).
+- UPDATED Salmon to 0.13.1 and added the `--validateMappings` flag to the Salmon commands.
+- UPDATED code such that you no longer need to specify `main` when running `oyster.mk`.
+
 
 Version 2.1.1
 
