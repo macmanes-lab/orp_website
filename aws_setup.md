@@ -34,7 +34,7 @@ source ~/.profile
 You should just have to change the user path info (the stuff before `/Oyster_River_Protocol/...`). A simple way to do this is via sed.
 
 ```
-sed -i  's_ubuntu_$(whoami)_g' $HOME/Oyster_River_Protocol/software/config.ini
+sed -i  "s_ubuntu_$(whoami)_g" $HOME/Oyster_River_Protocol/software/config.ini
 ```
 
 You may want to install additional BUSCO databases - the Euk. database is installed and used by default.
