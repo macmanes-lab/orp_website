@@ -117,7 +117,7 @@ At the end of the successful run, you should see some text that looks like this.
 
 
 
-*****  QUALITY REPORT FOR: test using the ORP version 2.1.0 ****
+*****  QUALITY REPORT FOR: test using the ORP version 2.2.0 ****
 *****  THE ASSEMBLY CAN BE FOUND HERE: /root/ORP/sampledata/assemblies/test.ORP.fasta ****
 
 *****  BUSCO SCORE ~~~~~>               C:0.0%[S:0.0%,D:0.0%],F:0.3%,M:99.7%,n:303
