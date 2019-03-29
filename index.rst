@@ -25,12 +25,16 @@ Some method you'd like me to benchmark? File an `issue <https://github.com/macma
 1. Installing the software
 -----------------------------------
 In general, the ORP can be successfully and easily installed on Linux operating systems. OSX might work,
-but I have not tried and it is unsupported. Don't try this on Windows.
+but I have not tried and it is unsupported. Don't try this on Windows. You can install via Docker.
 
-Here are the instructions for installation. Getting stuff installed will be the hard part (the included makefile should do must/all of the hard work, though). Once you have things installed, should be smooth sailing!
+Here are the instructions for installation. Getting stuff installed will be the hard part (the included makefile should do must/all of the hard work, though). Once you have things installed, should be smooth sailing! Make sure and run the test dataset.
 
 --------------------------------------------------
  :doc:`aws_setup`
+--------------------------------------------------
+
+--------------------------------------------------
+ :doc:`docker_install`
 --------------------------------------------------
 
 
@@ -53,7 +57,7 @@ After activating the `orp` conda environment. this command will run the entire O
     source activate orp
 
     /path/to/Oyster_River_Protocol/oyster.mk \
-    TPM_FILT=0.2 \
+    TPM_FILT=1 \
     STRAND=RF \
     MEM=150 \
     CPU=24 \
@@ -114,9 +118,10 @@ is there by default.
 6. Changelog
 ---------
 
-Version 2.2.0
+Version 2.2.2
 
 - FIXED a critical bug whereby the incorrect transcript was picked from a given orthogroup. This fix will potentially improve BUSCO scores dramatically.
+- ADDED the ability to install using Docker!!!
 - ADDED a flag to filter lowly expressed transcripts out of the dataset. Implement via `TPM_FILT=<float>`. The unfiltered assembly is available in the `assemblies/working/` folder. We also implement some methods to try and make sure that we don't eliminate any "real" transcripts in this process of TPM filtering.
 - ADDED a check to make sure that your read files exist at the specified location.
 - FIXED a bug the prevented proper BUSCO checkpointing (thanks @AdamStuckert).
