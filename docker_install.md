@@ -1,4 +1,4 @@
-# How to install the ORP using docker_setup
+# How to install the ORP using Docker
 ---
 
 1. Build the image
