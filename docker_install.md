@@ -4,7 +4,7 @@
 1. Build the image
 
 ```
-docker build -t orp:2.2.2 -f $HOME/Oyster_River_Protocol/Dockerfile/Dockerfile
+docker build -t orp:2.2.2 -f $HOME/Oyster_River_Protocol/Dockerfile/Dockerfile .
 ```
 
 2. Run the Image
