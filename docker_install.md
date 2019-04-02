@@ -1,7 +1,14 @@
 # How to install the ORP using Docker
 ---
 
-1. Build the image
+1. Pull the image from DockerHub
+
+
+```
+docker pull macmaneslab/orp:ebi2019
+```
+
+2. Alternatively, but probably not preferred, to build the image from scratch.
 
 ```
 docker build -t orp:2.2.2 -f $HOME/Oyster_River_Protocol/Dockerfile/Dockerfile .
@@ -10,21 +17,21 @@ docker build -t orp:2.2.2 -f $HOME/Oyster_River_Protocol/Dockerfile/Dockerfile .
 2. Run the Image
 
 ```
-docker run -it orp:2.2.2 bash
+docker run -it macmaneslab/orp:ebi2019 bash
 ```
 
 3. Test the Installation
 
 ```
-cd /home/training/Oyster_River_Protocol/sampledata
+cd $HOME/Oyster_River_Protocol/sampledata
 
-source activate orp
+conda activate orp
 
-/home/training/Oyster_River_Protocol/oyster.mk \
+$HOME/Oyster_River_Protocol/oyster.mk \
 STRAND=RF \
 TPM_FILT=1 \
-MEM=15 \
-CPU=8 \
+MEM=5 \
+CPU=4 \
 READ1=test.1.fq.gz \
 READ2=test.2.fq.gz \
 RUNOUT=test
