@@ -5,19 +5,19 @@
 
 
 ```
-docker pull macmaneslab/orp:ebi2019
+docker pull macmaneslab/orp:2.2.4
 ```
 
 \2. Alternatively, but probably not preferred, to build the image from scratch.
 
 ```
-docker build -t orp:2.2.2 -f $HOME/Oyster_River_Protocol/Dockerfile/Dockerfile .
+docker build -t orp:2.2.4 -f $HOME/Oyster_River_Protocol/Dockerfile/Dockerfile .
 ```
 
 \3. Run the Image
 
 ```
-docker run -it macmaneslab/orp:ebi2019 bash
+docker run -it macmaneslab/orp:2.2.4 bash
 ```
 
 \4. Test the Installation
