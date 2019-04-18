@@ -24,17 +24,16 @@ Some method you'd like me to benchmark? File an `issue <https://github.com/macma
 
 1. Installing the software
 -----------------------------------
-In general, the ORP can be successfully and easily installed on Linux operating systems. OSX might work,
-but I have not tried and it is unsupported. Don't try this on Windows. You can install via Docker.
-
-Here are the instructions for installation. Getting stuff installed will be the hard part (the included makefile should do must/all of the hard work, though). Once you have things installed, should be smooth sailing! Make sure and run the test dataset.
-
---------------------------------------------------
- :doc:`aws_setup`
---------------------------------------------------
+_Docker is the preferred installation method!!!!_
 
 --------------------------------------------------
  :doc:`docker_install`
+--------------------------------------------------
+
+If you cannot use docker, then look at these instructions for installing manually, on Linux operating systems. 
+
+--------------------------------------------------
+ :doc:`aws_setup`
 --------------------------------------------------
 
 
