@@ -10,7 +10,7 @@ These instructions work with a standard Ubuntu 16.04 or 18.04 machine available 
 This is typically necessary only when starting from a fresh machine.
 
 ```
-sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install build-essential git libxml2-dev libz-dev sudo nano wget curl
+sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install build-essential git  libxml2-dev libz-dev sudo nano wget curl
 ```
 
 

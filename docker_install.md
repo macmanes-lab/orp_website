@@ -36,7 +36,7 @@ conda activate orp
 
 $HOME/Oyster_River_Protocol/oyster.mk \
 STRAND=RF \
-TPM_FILT=1 \
+TPM_FILT=2 \
 MEM=5 \
 CPU=4 \
 READ1=test.1.fq.gz \
